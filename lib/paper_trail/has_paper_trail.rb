@@ -290,6 +290,12 @@ module PaperTrail
         save!(:validate => false)
       end
 
+      # Returns the original version of this object or just this object if there has been no changes.
+      def original_version
+        self.versions.second&.reify || self
+      end
+
+
       private
 
       # Returns true if `save` will cause `record_update`
