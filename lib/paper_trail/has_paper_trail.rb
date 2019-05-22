@@ -254,6 +254,12 @@ module PaperTrail
         save!
       end
 
+      # Returns the original version of this object or just this object if there has been no changes.
+      def original_version
+        self.versions.second&.reify || self
+      end
+
+
       private
 
       def source_version
