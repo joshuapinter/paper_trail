@@ -74,6 +74,11 @@ module PaperTrail
         versions.reset
       end
     end
+    
+    # Returns the original version of this object or just this object if there has been no changes.
+    def original_version
+        versions.second&.reify || @record
+    end
 
     # PT-AT extends this method to add its transaction id.
     #
