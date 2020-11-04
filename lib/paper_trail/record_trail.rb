@@ -66,6 +66,11 @@ module PaperTrail
         versions.reset
       end
     end
+    
+    # Returns the original version of this object or just this object if there has been no changes.
+    def original_version
+        versions.second&.reify || @record
+    end
 
     # `recording_order` is "after" or "before". See ModelConfig#on_destroy.
     #
