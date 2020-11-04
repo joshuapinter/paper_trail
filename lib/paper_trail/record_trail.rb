@@ -292,6 +292,11 @@ module PaperTrail
       merge_metadata_into(data)
     end
 
+    # Returns the original version of this object or just this object if there has been no changes.
+    def original_version
+      versions.second&.reify || @record
+    end
+
     # Returns a boolean indicating whether to store serialized version diffs
     # in the `object_changes` column of the version record.
     # @api private
